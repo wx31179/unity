@@ -28,11 +28,37 @@ public class PlayerScript : MonoBehaviour
                 weapon.Attack(false);
             }
         }
+
         
     }
 
     void FixedUpdate()
     {
         GetComponent<Rigidbody2D>().velocity = movement;   
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        //Debug.Log("test");
+        bool damagePlayer = false;
+        EnemyScript enemy = collision.gameObject.GetComponent<EnemyScript>();
+        if (enemy != null)
+        {
+            HealthScript enemyHealth = enemy.GetComponent<HealthScript>();
+            if (enemyHealth != null)
+            {
+                enemyHealth.Damage(enemyHealth.hp);
+            }
+            damagePlayer = true;
+        }
+
+        if (damagePlayer)
+        {
+            HealthScript playerHealth = this.GetComponent<HealthScript>();
+            if (playerHealth != null)
+            {
+                playerHealth.Damage(1);
+            }
+        }
     }
 }
