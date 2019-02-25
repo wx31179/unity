@@ -5,7 +5,7 @@ using UnityEngine;
 public class WeaponScript : MonoBehaviour
 {
     public Transform shotPrefab;
-    public float shootingRate = 0.25f;
+    public float shootingRate = 0.75f;
     private float shootCooldown;
     // Start is called before the first frame update
     void Start()
@@ -45,7 +45,7 @@ public class WeaponScript : MonoBehaviour
                 if (shot.isEnemyshot)
                 {
                     move.direction.x = -1f;
-                    move.speed = new Vector2(5, 5);
+                    move.speed = new Vector2(10, 10);
                 }
                 else
                 {
