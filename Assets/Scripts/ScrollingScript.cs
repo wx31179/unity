@@ -19,21 +19,25 @@ public class ScrollingScript : MonoBehaviour
         {
             backgroundpart = new List<Transform>();
 
+
             //Debug.Log(transform);
 
             //Debug.Log(transform.childCount);
 
-            for (int i = 0;i < transform.childCount;i++)
+            for (int i = 0; i < transform.childCount; i++)
             {
-                Transform child = transform.GetChild(i);         
+                Transform child = transform.GetChild(i);
 
                 if (child.GetComponent<Renderer>() != null)
-
                 {
-                    //Debug.Log(GetComponent<Renderer>());
                     backgroundpart.Add(child);
                 }
+                    
             }
+            //Debug.Log(transform);
+
+            //Debug.Log(transform.childCount);
+
             backgroundpart = backgroundpart.OrderBy(t=> t.position.x).ToList();
             
         }
@@ -48,10 +52,6 @@ public class ScrollingScript : MonoBehaviour
         if (isLinkedToCamera)
         {
             Camera.main.transform.Translate(movement);
-
-            //Debug.Log(movement);
-
-            //Debug.Log(transform);
 
         }
         if (isLoop)

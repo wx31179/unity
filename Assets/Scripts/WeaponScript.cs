@@ -46,7 +46,9 @@ public class WeaponScript : MonoBehaviour
                 {
                     move.direction.x = -1f;
 
+
                     move.speed = new Vector2(10, 10);
+
 
 
 
