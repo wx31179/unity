@@ -45,7 +45,11 @@ public class WeaponScript : MonoBehaviour
                 if (shot.isEnemyshot)
                 {
                     move.direction.x = -1f;
+<<<<<<< HEAD
                     move.speed = new Vector2(10, 10);
+=======
+                    move.speed = new Vector2(15, 15);
+>>>>>>> cbb6aaa8c5ea203e62d1934b51d3c4974a2de610
                 }
                 else
                 {

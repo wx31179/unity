@@ -28,6 +28,7 @@ public class PlayerScript : MonoBehaviour
                 weapon.Attack(false);
             }
         }
+<<<<<<< HEAD
         var dist = (transform.position - Camera.main.transform.position).z;
         var leftBorder = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, dist)).x;
         var rightBorder = Camera.main.ViewportToWorldPoint(new Vector3(1, 0, dist)).x;
@@ -36,6 +37,8 @@ public class PlayerScript : MonoBehaviour
         transform.position = new Vector3(Mathf.Clamp(transform.position.x, leftBorder, rightBorder),
                                             Mathf.Clamp(transform.position.y, topBorder, bottomBorder),
                                             transform.position.z);
+=======
+>>>>>>> cbb6aaa8c5ea203e62d1934b51d3c4974a2de610
 
         
     }
