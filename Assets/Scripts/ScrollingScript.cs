@@ -18,22 +18,23 @@ public class ScrollingScript : MonoBehaviour
         if (isLoop)
         {
             backgroundpart = new List<Transform>();
+
             //Debug.Log(transform);
+
+            //Debug.Log(transform.childCount);
+
             for (int i = 0;i < transform.childCount;i++)
             {
-                Transform child = transform.GetChild(i);
-                
+                Transform child = transform.GetChild(i);         
+
                 if (child.GetComponent<Renderer>() != null)
+
                 {
                     //Debug.Log(GetComponent<Renderer>());
                     backgroundpart.Add(child);
                 }
             }
             backgroundpart = backgroundpart.OrderBy(t=> t.position.x).ToList();
-            for (int i =0;i < backgroundpart.Count;i++)
-            {
-                Debug.Log(backgroundpart[i]);
-            }
             
         }
     }
@@ -47,13 +48,18 @@ public class ScrollingScript : MonoBehaviour
         if (isLinkedToCamera)
         {
             Camera.main.transform.Translate(movement);
+
             //Debug.Log(movement);
+
+            //Debug.Log(transform);
+
         }
         if (isLoop)
         {
             Transform firstChild = backgroundpart.FirstOrDefault();
             if (firstChild != null)
             {
+
                 ////Debug.Log("first:"+firstChild.position.x);
                 ////Debug.Log("camera:"+Camera.main.transform.position.x);
                 if (firstChild.position.x < Camera.main.transform.position.x)
@@ -63,6 +69,7 @@ public class ScrollingScript : MonoBehaviour
                         Transform lastChild = backgroundpart.LastOrDefault();
                         Vector3 lastPostion = lastChild.transform.position;
                         Vector3 lastSize = (lastChild.GetComponent<Renderer>().bounds.max - lastChild.GetComponent<Renderer>().bounds.min);
+
                         firstChild.position = new Vector3(lastPostion.x + lastSize.x, firstChild.position.y, firstChild.position.z);
                         backgroundpart.Remove(firstChild);
                         backgroundpart.Add(firstChild);
