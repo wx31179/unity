@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class SpecialEffectsHelper : MonoBehaviour
 {
     public static SpecialEffectsHelper Instance;
@@ -25,8 +26,9 @@ public class SpecialEffectsHelper : MonoBehaviour
     }
     private ParticleSystem instantiate(ParticleSystem perfab,Vector3 position)
     {
+        
         ParticleSystem newParticleSystem = Instantiate(perfab, position, Quaternion.identity) as ParticleSystem;
-        Destroy(newParticleSystem.gameObject, newParticleSystem.startLifetime);
+        Destroy(newParticleSystem.gameObject, newParticleSystem.main.startLifetime.constant);
         return newParticleSystem;
 
     }

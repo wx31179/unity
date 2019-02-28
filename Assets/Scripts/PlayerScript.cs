@@ -71,4 +71,15 @@ public class PlayerScript : MonoBehaviour
             }
         }
     }
+
+    private void OnDestroy()
+    {
+        HealthScript PlayerHealth = GetComponent<HealthScript>();
+        if (PlayerHealth.hp <= 0)
+        {
+            var gameover = FindObjectOfType<GameOverScript>();
+            gameover.ShowButtons();
+        }
+
+    }
 }
