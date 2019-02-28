@@ -44,7 +44,8 @@ public class PlayerScript : MonoBehaviour
 
     void FixedUpdate()
     {
-        GetComponent<Rigidbody2D>().velocity = movement;   
+        GetComponent<Rigidbody2D>().velocity = movement;
+        
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -68,6 +69,7 @@ public class PlayerScript : MonoBehaviour
             if (playerHealth != null)
             {
                 playerHealth.Damage(1);
+                Debug.Log(playerHealth.hp);
             }
         }
     }

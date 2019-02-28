@@ -12,4 +12,15 @@ public class MenuScript : MonoBehaviour
         //Application.LoadLevel("Stage1");
 
     }
+
+    public void Config()
+    {
+        SceneManager.LoadScene("config");
+    }
+
+    public void TurnOffMusic()
+    {
+        var music = GameObject.FindWithTag("GameController");
+        Debug.Log(music);
+    }
 }

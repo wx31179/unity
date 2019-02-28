@@ -4,18 +4,33 @@ using UnityEngine;
 
 public class HealthScript : MonoBehaviour
 {
-    public int hp = 1;
+    public int hp = 10;
     public bool isEnemy = true;
     // Start is called before the first frame update
     public void Damage(int damageCount)
     {
-        hp -= damageCount;
-        if (hp <= 0)
+        if (isEnemy)
         {
-            SpecialEffectsHelper.Instance.Explosion(transform.position);
-            SoundEffectsHelper.Instance.MakeExplosionSound();
-            Destroy(gameObject);
+            hp = 1;
+            hp -= damageCount;
+            if (hp <= 0)
+            {
+                SpecialEffectsHelper.Instance.Explosion(transform.position);
+                SoundEffectsHelper.Instance.MakeExplosionSound();
+                Destroy(gameObject);
+            }
         }
+        else
+        {
+            hp -= damageCount;
+            if (hp <= 0)
+            {
+                SpecialEffectsHelper.Instance.Explosion(transform.position);
+                SoundEffectsHelper.Instance.MakeExplosionSound();
+                Destroy(gameObject);
+            }
+        }
+        
     }
     private void OnTriggerEnter2D(Collider2D collider)
     {
