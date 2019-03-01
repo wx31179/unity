@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class MenuScript : MonoBehaviour
 {
+    
     public void StartGame()
     {
         SceneManager.LoadScene("Stage1");
@@ -18,9 +19,9 @@ public class MenuScript : MonoBehaviour
         SceneManager.LoadScene("config");
     }
 
-    public void TurnOffMusic()
+    public void Test()
     {
-        var music = GameObject.FindWithTag("GameController");
-        Debug.Log(music);
+        GameObject config = GameObject.FindGameObjectWithTag("GameController");
+        Debug.Log(config.GetComponent<ConfigScript>().music);
     }
 }

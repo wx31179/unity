@@ -2008,7 +2008,7 @@ GameObject:
   - component: {fileID: 1785934322}
   - component: {fileID: 1785934321}
   m_Layer: 0
-  m_Name: Audio Source
+  m_Name: sound
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
