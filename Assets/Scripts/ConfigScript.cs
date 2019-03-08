@@ -8,9 +8,10 @@ using UnityEngine.UI;
 
 public class ConfigScript : MonoBehaviour
 {
-    private static bool music;
     private new AudioSource audio;
     private Dictionary<string, string> settingxml;
+    private ConfigScript configscript;
+    private LoadEditXml loadeditxml;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,7 +24,7 @@ public class ConfigScript : MonoBehaviour
         settingxml = LoadEditXml.Instance.LoadSettingXml();       
             if (settingxml["music"] == "0")
             {
-                GameObject sound = GameObject.Find("backgroundmusic-config");
+                GameObject sound = GameObject.Find("script");
                 audio = sound.GetComponent<AudioSource>();
                 audio.enabled = false;
                 Text text = GameObject.FindGameObjectWithTag("text").GetComponent<Text>();
@@ -32,7 +33,7 @@ public class ConfigScript : MonoBehaviour
             }
             else
             {
-                GameObject sound = GameObject.Find("backgroundmusic-config");
+                GameObject sound = GameObject.Find("script");
                 audio = sound.GetComponent<AudioSource>();
                 audio.enabled = true;
                 Text text = GameObject.FindGameObjectWithTag("text").GetComponent<Text>();
@@ -46,8 +47,13 @@ public class ConfigScript : MonoBehaviour
     }
     public void BackToMenu()
     {
+        GameObject config = GameObject.Find("script");
+        configscript = config.GetComponent<ConfigScript>();
+        configscript.enabled = false;
+        loadeditxml = config.GetComponent<LoadEditXml>();
+        loadeditxml.enabled = false;
         SceneManager.LoadScene("Menu");
-        Debug.Log(music);
+
 
     }
 }

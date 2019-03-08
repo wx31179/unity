@@ -12,7 +12,7 @@ public class LoadEditXml : MonoBehaviour
     public string FilePath;
     XmlDocument xmlDoc = new XmlDocument();
 
-    void Awake()
+    void Start()
     {
         if (Instance != null)
         {

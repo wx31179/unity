@@ -9,7 +9,7 @@ public class SpecialEffectsHelper : MonoBehaviour
     public ParticleSystem smokeEffect;
     public ParticleSystem fireEffect;
 
-    void Awake()
+    void Start()
     {
         if (Instance != null)
         {

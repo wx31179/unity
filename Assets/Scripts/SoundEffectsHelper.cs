@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 /// <summary>
 /// Creating instance of sounds from code with no effort
@@ -16,7 +17,7 @@ public class SoundEffectsHelper : MonoBehaviour
   public AudioClip playerShotSound;
   public AudioClip enemyShotSound;
 
-  void Awake()
+  void Start()
   {
     // Register the singleton
     if (Instance != null)
@@ -34,12 +35,14 @@ public class SoundEffectsHelper : MonoBehaviour
   public void MakePlayerShotSound()
   {
     MakeSound(playerShotSound);
-  }
+        //Debug.Log("player");
+    }
 
   public void MakeEnemyShotSound()
   {
     MakeSound(enemyShotSound);
-  }
+        //Debug.Log("enemy");
+    }
 
   /// <summary>
   /// Play a given sound
@@ -47,7 +50,16 @@ public class SoundEffectsHelper : MonoBehaviour
   /// <param name="originalClip"></param>
   private void MakeSound(AudioClip originalClip)
   {
-    // As it is not 3D audio clip, position doesn't matter.
-    AudioSource.PlayClipAtPoint(originalClip, transform.position);
+
+        try
+        {
+            AudioSource.PlayClipAtPoint(originalClip, transform.position);
+        }
+        catch(Exception e)
+        {
+            Debug.Log(e);
+        }
+    
+        //Debug.Log("test");
   }
 }

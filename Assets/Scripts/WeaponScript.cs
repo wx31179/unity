@@ -26,10 +26,12 @@ public class WeaponScript : MonoBehaviour
             if (isEnemy)
             {
                 SoundEffectsHelper.Instance.MakeEnemyShotSound();
+                
             }
             else
             {
                 SoundEffectsHelper.Instance.MakePlayerShotSound();
+                
             }
             shootCooldown = shootingRate;
             var shotTransform = Instantiate(shotPrefab) as Transform;
