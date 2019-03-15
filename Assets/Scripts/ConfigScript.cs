@@ -11,7 +11,6 @@ public class ConfigScript : MonoBehaviour
     private new AudioSource audio;
     private Dictionary<string, string> settingxml;
     private ConfigScript configscript;
-    private LoadEditXml loadeditxml;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,7 +20,7 @@ public class ConfigScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        settingxml = LoadEditXml.Instance.LoadSettingXml();       
+        settingxml = LoadEditXml.LoadSettingXml();       
             if (settingxml["music"] == "0")
             {
                 GameObject sound = GameObject.Find("script");
@@ -43,15 +42,13 @@ public class ConfigScript : MonoBehaviour
     }
     public void TurnOffMusic()
     {
-        LoadEditXml.Instance.EditSettingXml();
+        LoadEditXml.EditSettingXml();
     }
     public void BackToMenu()
     {
         GameObject config = GameObject.Find("script");
         configscript = config.GetComponent<ConfigScript>();
         configscript.enabled = false;
-        loadeditxml = config.GetComponent<LoadEditXml>();
-        loadeditxml.enabled = false;
         SceneManager.LoadScene("Menu");
 
 

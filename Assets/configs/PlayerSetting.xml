@@ -1,5 +1,9 @@
-<player>
-  <level>0</level>
-  <hp>10</hp>
-  <speed>5</speed>
-</player>
+<Player>
+  <Level>0</Level>
+  <Hp>10</Hp>
+  <Speed>5</Speed>
+  <Live>3</Live>
+  <Power>10</Power>
+  <Magic>15</Magic>
+  <test></test>
+</Player>

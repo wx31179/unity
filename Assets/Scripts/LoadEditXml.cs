@@ -10,20 +10,10 @@ public class LoadEditXml : MonoBehaviour
     public static LoadEditXml Instance;
     public static XmlNodeList node;
     public string FilePath;
-    XmlDocument xmlDoc = new XmlDocument();
+    static XmlDocument xmlDoc = new XmlDocument();
+    
 
-    void Start()
-    {
-        if (Instance != null)
-        {
-            Debug.LogError("Multiple instances of LoadEditXml!");
-        }
-        Instance = this;
-
-    }
-
-
-    public Dictionary<string, string> LoadSettingXml()
+    public static Dictionary<string, string> LoadSettingXml()
     {
         string FilePath = Application.dataPath + @"/configs/GlobalSetting.xml";
         Dictionary<string, string> settingxml = new Dictionary<string, string>();
@@ -40,7 +30,25 @@ public class LoadEditXml : MonoBehaviour
         return settingxml;
     }
 
-    public void EditSettingXml()
+    public static Dictionary<string,string> LoadPlayerSettingXml()
+    {
+        string FilePath = Application.dataPath + @"/configs/PlayerSetting.xml";
+        Dictionary<string, string> playersettingxml = new Dictionary<string, string>();
+        if (File.Exists(FilePath))
+        {
+            xmlDoc.Load(FilePath);
+            node = xmlDoc.SelectSingleNode("Player").ChildNodes;
+            foreach(XmlElement i in node)
+            {
+                playersettingxml.Add(i.Name, i.InnerText);
+            }
+
+        }
+
+        return playersettingxml;
+    }
+
+    public static void EditSettingXml()
     {
         string FilePath = Application.dataPath + @"/configs/GlobalSetting.xml";
         foreach (XmlElement nodeList in node)
@@ -61,24 +69,6 @@ public class LoadEditXml : MonoBehaviour
                 }
             }
         }
-    }
-
-    public Dictionary<string, string> LoadPlayerXml()
-    {
-        string FilePath = Application.dataPath + @"/configs/PlayerSetting.xml";
-        Dictionary<string, string> playerxml = new Dictionary<string, string>();
-        if (File.Exists(FilePath))
-        {
-            xmlDoc.Load(FilePath);
-            node = xmlDoc.SelectSingleNode("player").ChildNodes;
-            foreach (XmlElement i in node)
-            {
-                playerxml.Add(i.Name, i.InnerText);
-            }
-
-        }
-        return playerxml;
-
     }
 }
 

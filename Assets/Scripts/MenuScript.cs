@@ -8,10 +8,12 @@ using System.Xml;
 public class MenuScript : MonoBehaviour
 {
     private ConfigScript configscript;
-    private LoadEditXml loadeditxml;
     public static MenuScript Instance;
     private SpecialEffectsHelper effectscript;
     private SoundEffectsHelper soundscript;
+    private new AudioSource audio;
+    private Dictionary<string, string> settingxml;
+    private Dictionary<string, string> playersettingxml;
     void Awake()
     {
         if (Instance == null)
@@ -22,29 +24,26 @@ public class MenuScript : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        //string filePath = Application.dataPath + @"/configs/GlobalSetting.xml";
-        //if (File.Exists(filePath))
-        //{
-        //    XmlDocument xmlDoc = new XmlDocument();
-        //    xmlDoc.Load(filePath);
-        //    XmlNodeList node = xmlDoc.SelectSingleNode("setting").ChildNodes;
-        //    foreach (XmlElement nodeList in node)
-        //    {
-        //        if (nodeList.Name == "music")
-        //        {
-        //            if (nodeList.InnerXml == "1")
-        //            {
-                        
-        //            }
-        //            else
-        //            {
-        //                GameObject sound = GameObject.Find("script");
-        //                audio = sound.GetComponent<AudioSource>();
-        //                audio.enabled = false;
-        //            }
-        //        }
-        //    }
-        //}
+        settingxml = LoadEditXml.LoadSettingXml();
+        if (settingxml["music"] == "0")
+        {
+            GameObject sound = GameObject.Find("script");
+            audio = sound.GetComponent<AudioSource>();
+            audio.enabled = false;
+
+        }
+        else
+        {
+            GameObject sound = GameObject.Find("script");
+            audio = sound.GetComponent<AudioSource>();
+            audio.enabled = true;
+
+        }
+        playersettingxml = LoadEditXml.LoadPlayerSettingXml();
+        foreach (string i in playersettingxml.Keys)
+        {
+            Debug.Log(i + ":" + playersettingxml[i]);
+        }
 
     }
     public void StartGame()
@@ -64,8 +63,6 @@ public class MenuScript : MonoBehaviour
     {
         GameObject config = GameObject.Find("script");
         configscript = config.GetComponent<ConfigScript>();
-        loadeditxml = config.GetComponent<LoadEditXml>();
-        loadeditxml.enabled = true;
         configscript.enabled = true;
         SceneManager.LoadScene("config");
         Debug.Log("test");
